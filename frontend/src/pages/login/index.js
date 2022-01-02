@@ -21,6 +21,7 @@ export default function LoginPage () {
   }, [])
 
   async function login (data) {
+    console.log('data >>>', data)
     const req = await api();
     try {
       const res = await req.post('/', data);

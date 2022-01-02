@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import skClient from 'socket.io-client';
 import { usePainel } from '../../contexts/painel';
 import {
@@ -21,19 +21,17 @@ export default function PainelPage () {
   const [cc, setCC] = useState([]);
   const [isExecuting, setIsExecuting] = useState(false);
 
-  function playAudio () {
+  function playAudio (data) {
     setIsExecuting(true);
     setTimeout(() => {
       setIsExecuting(false);
-    }, 3000)
+    }, 3000);
   }
 
   function execute () {
     if (cc.length > 0) {
-      if (isExecuting) {
-
-      } else {
-        playAudio();
+      if (!isExecuting) {
+        playAudio(cc[0]);
       }
     }
   }
@@ -126,6 +124,9 @@ export default function PainelPage () {
         </Table>
       </TableContainer>
       </Box>
+      <audio>
+        <source src="../../sons/cem.wav" type="audio/wav" />
+      </audio>
     </Box>
   )
 }

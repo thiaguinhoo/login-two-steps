@@ -15,7 +15,7 @@ export default function ControlePage () {
     const sk = skClient(ENDPOINT);
     sk.emit('enter in room', { painel });
     sk.on("enter a user", data => {
-      console.log('data >>>', data);
+      
     })
     setSkConn(sk);
   }, [painel]);
