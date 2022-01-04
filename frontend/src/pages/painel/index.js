@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import skClient from 'socket.io-client';
+
 import { usePainel } from '../../contexts/painel';
 import '../../utils/extenso';
+import Table from './table';
 
 const ENDPOINT = 'http://localhost:3333';
 
@@ -56,7 +58,7 @@ export default function PainelPage () {
       const call = { senha, nome, local: data.local };
       setCall(call);
       setCalls((oldCalls) => {
-        if (oldCalls.length >= 3) {
+        if (oldCalls.length >= 5) {
           return [call, ...oldCalls.slice(0, -1)]
         }
         return [call, ...oldCalls]
@@ -66,6 +68,21 @@ export default function PainelPage () {
   }, [painel]);
 
   return (
-    null
+    <div className="container mt-3">
+      <div className="row">
+        <div className="col-sm text-center border border-1 text-uppercase">
+          { call.nome }
+        </div>
+        <div className="col-sm text-center border border-1 text-uppercase">
+          { call.senha }
+        </div>
+      </div>
+      <div className="row">
+        <div className="text-end border border-1 text-uppercase">
+          { call.local }
+        </div>
+      </div>
+      <Table calls={calls} />
+    </div>
   )
 }

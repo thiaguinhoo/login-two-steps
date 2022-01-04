@@ -44,8 +44,6 @@ const io = socketIo(server, {
 });
 
 io.on('connection', (sk) => {
-  sk.emit('message', 'welcome');
-
   sk.on('enter in room', data => {
     // set room in socket
     sk.room = data.painel;
