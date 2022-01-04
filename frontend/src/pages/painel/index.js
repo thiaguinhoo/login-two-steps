@@ -4,6 +4,7 @@ import skClient from 'socket.io-client';
 import { usePainel } from '../../contexts/painel';
 import '../../utils/extenso';
 import Table from './table';
+import './styles.css';
 
 const ENDPOINT = 'http://localhost:3333';
 
@@ -69,17 +70,29 @@ export default function PainelPage () {
 
   return (
     <div className="container mt-3">
-      <div className="row">
-        <div className="col-sm text-center border border-1 text-uppercase">
-          { call.nome }
+      <div className="row info">
+        <div
+          className="col-sm text-center border border-white text-uppercase b-blue d-flex align-items-center"
+        >
+          <p className="f50 text-light fw-bold">{ call.nome }</p>
         </div>
-        <div className="col-sm text-center border border-1 text-uppercase">
-          { call.senha }
+        <div
+          className="col-sm text-center border border-white text-uppercase b-blue d-flex align-items-center justify-content-center"
+        >
+          <p className="f125 text-light fw-bold">
+            { call.senha }
+          </p>
         </div>
       </div>
       <div className="row">
-        <div className="text-end border border-1 text-uppercase">
-          { call.local }
+        <div
+          className="text-end border border-white text-uppercase b-blue d-flex align-items-center justify-content-end info-local"
+        >
+          <p
+            className="f35 text-light fw-bold"
+          >
+            { call.local }
+          </p>
         </div>
       </div>
       <Table calls={calls} />

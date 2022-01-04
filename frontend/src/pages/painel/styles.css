@@ -1,0 +1,28 @@
+.f125 {
+  font-size: 100px;
+}
+
+.f50 {
+  font-size: 50px;
+}
+
+.f35 {
+  font-size: 35px;
+  margin-top: 15px;
+}
+
+.f15 {
+  font-size: 25px!important;
+}
+
+.b-blue {
+  background-color: #87A9D0;
+}
+
+.info {
+  height: 250px;
+}
+
+.info-local {
+  height: 100px;
+}
