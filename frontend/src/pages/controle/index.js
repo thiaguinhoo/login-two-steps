@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import skClient from 'socket.io-client';
 import { useForm } from 'react-hook-form';
 import { usePainel } from '../../contexts/painel';
-import { TextField, Button } from '@mui/material';
 
 const ENDPOINT = 'http://localhost:3333';
 
@@ -14,9 +13,7 @@ export default function ControlePage () {
   useEffect(() => {
     const sk = skClient(ENDPOINT);
     sk.emit('enter in room', { painel });
-    sk.on("enter a user", data => {
-      
-    })
+    sk.on("enter a user", data => {})
     setSkConn(sk);
   }, [painel]);
 
@@ -26,20 +23,20 @@ export default function ControlePage () {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <TextField
-        label="Local"
-        { ...register('local') }
-      />
-      <TextField
-        label="Senha"
-        { ...register('senha') }
-      />
-      <Button
-        variant="contained"
+      <div className="form-control">
+        <label htmlFor="inputLocal">Local</label>
+        <input { ...register('local', { required: true }) } />
+      </div>
+      <div className="form-control">
+        <label htmlFor="inputSenha">Senha</label>
+        <input { ...register('senha', { required: true }) } />
+      </div>
+      <button
         type="submit"
+        className="btn btn-primary btn-block"
       >
         Chamar
-      </Button>
+      </button>
     </form>
   )
 }

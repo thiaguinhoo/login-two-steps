@@ -14,8 +14,8 @@ app.use(cors());
 app.use(morgan('dev'));
 
 app.get('/get-painel', async (req, res) => {
-  const { tokenkey } = req.headers;
-  if (!tokenkey) {
+  const { authorization } = req.headers;
+  if (!authorization) {
     return res.json({ error: 'Error' });
   }
   res.json(

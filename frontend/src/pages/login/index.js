@@ -21,7 +21,6 @@ export default function LoginPage () {
   }, [])
 
   async function login (data) {
-    console.log('data >>>', data)
     const req = await api();
     try {
       const res = await req.post('/', data);
@@ -30,19 +29,20 @@ export default function LoginPage () {
         localStorage.setItem("@App:Token_Key", tokenKey);
         const resGet = await req.get('/get-painel', {
           headers: {
-            tokenKey
+            Authorization: `Bearer ${tokenKey}`
           }
         })
         setIsSelectPainel(true);
         setPaineisOptions(resGet.data);
       }
+      return;
     } catch (err) {}
   }
 
   function select (data) {
     setPainelData(data.painel);
     setAuth(true);
-    navigate('/home');
+    navigate('/');
   }
 
   if (isSelectPainel) {

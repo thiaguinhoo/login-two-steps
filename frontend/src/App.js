@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route} from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import AuthProvider from './contexts/auth';
 import PainelProvider from './contexts/painel';
@@ -14,9 +14,9 @@ function App() {
       <PainelProvider>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<LoginPage />} />
+            <Route path="/login" element={<LoginPage />} />
             <Route
-              path="/home"
+              path="/"
               element={
                 <PrivateRoute>
                   <Home />

@@ -1,55 +1,41 @@
 import { useForm } from 'react-hook-form';
-import { MenuItem, Button, TextField, Box, Paper } from '@mui/material';
 
 export default function PainelForm ({ select, options }) {
   const { register, handleSubmit } = useForm();
 
   return (
-    <Box
-      width="100vw"
-      height="100vh"
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      bgcolor="#f3f3f3"
-    >
-      <Paper
-        style={{
-          width: 450,
-          padding: "24px 48px 32px",
-          display: 'flex',
-          justifyContent: "center",
-          alignItems: "center",
-          borderRadius: "5px",
-        }}
-      >
-      <form onSubmit={handleSubmit(select)}>
-        <Box>
-          <TextField
-            select
-            label="Painel"
-            helperText="Selecione o painel"
-            { ...register('painel', { required: true }) }
-          >
-            {options.map((option, index) => (
-              <MenuItem key={ index } value={ option.value }>
-                { option.label }
-              </MenuItem>
-            ))}
-          </TextField>
-        </Box>
-        <Box>
-          <Button
-            variant="contained"
-            size="large"
-            type="submit"
-            fullWidth
-          >
-            Selecionar
-          </Button>
-          </Box>
-      </form>
-      </Paper>
-    </Box>
+    <div className="global-container">
+      <div className="card login-form">
+        <div className="card-body">
+          <h3 className="card-title text-center">Painel de Senha</h3>
+          <div className="card-text">
+            <form onSubmit={handleSubmit(select)}>
+              <div className="form-group">
+                <label htmlFor="inputPainel">
+                  Selecione um painel
+                </label>
+                <select
+                  id="inputPainel"
+                  className="form-select form-control"
+                  { ...register('painel', { required: true }) }
+                >
+                  {
+                    options.map((option, index) => (
+                      <option value={option.value} key={index}>{option.label}</option>
+                    ))
+                  }
+                </select>
+              </div>
+              <button
+                type="submit"
+                className="btn btn-primary btn-block"
+              >
+                Selecionar
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }

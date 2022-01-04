@@ -1,15 +1,6 @@
-import { useRef, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import skClient from 'socket.io-client';
 import { usePainel } from '../../contexts/painel';
-import {
-  Box,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow
-} from '@mui/material';
 import '../../utils/extenso';
 
 const ENDPOINT = 'http://localhost:3333';
@@ -31,6 +22,7 @@ export default function PainelPage () {
   function execute () {
     if (cc.length > 0) {
       if (!isExecuting) {
+        console.log('Executing ...');
         playAudio(cc[0]);
       }
     }
@@ -47,7 +39,7 @@ export default function PainelPage () {
       output.push('complementares');
       outSenha = outSenha.substring(1, outSenha.length);
     } else if (senha[0] === 'P') {
-      output.push('preferencial');
+      output.push('Preferencial');
       outSenha = outSenha.substring(1, outSenha.length);
     }
     output = [...output, ...outSenha.extenso().split(' ')];
@@ -74,59 +66,6 @@ export default function PainelPage () {
   }, [painel]);
 
   return (
-    <Box>
-      <Box>
-        <Box>
-          { call?.nome }
-        </Box>
-        <Box>
-          { call?.senha }
-        </Box>
-      </Box>
-      <Box>
-        <Box>
-          { call?.local }
-        </Box>
-      </Box>
-      <Box>
-      <TableContainer>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>
-                Nome
-              </TableCell>
-              <TableCell>
-                Senha
-              </TableCell>
-              <TableCell>
-                Local
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {
-              calls.map((call, index) => (
-                <TableRow key={index}>
-                  <TableCell>
-                    { call.nome }
-                  </TableCell>
-                  <TableCell>
-                    { call.senha }
-                  </TableCell>
-                  <TableCell>
-                    { call.local }
-                  </TableCell>
-                </TableRow>
-              ))
-            }
-          </TableBody>
-        </Table>
-      </TableContainer>
-      </Box>
-      <audio>
-        <source src="../../sons/cem.wav" type="audio/wav" />
-      </audio>
-    </Box>
+    null
   )
 }
